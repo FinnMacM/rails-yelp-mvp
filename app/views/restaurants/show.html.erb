@@ -1,0 +1,23 @@
+<div>
+<p style="color: green"><%= notice %></p>
+
+<h1><%= @restaurants.name %></h1>
+<p><%= @restaurants.address %></p>
+<p><%= @restaurants.phone_number %></p>
+<p><%= @restaurants.category %></p>
+
+</div>
+
+<h2>Reviews</h2>
+<ul>
+<% @restaurants.reviews.each do |review| %>
+  <li><%= review.rating %>
+    <%= review.content %>
+    <%= button_to "Delete review", review, method: :delete%>
+  </li>
+    <% end %>
+</ul>
+  <p><%= link_to "Add a review", new_restaurant_review_path(@restaurants) %></p>
+  <p><%= link_to "Edit restaurant", edit_restaurant_path %></p>
+<%= link_to "Back to restaurants", restaurants_path %>
+<%= button_to "Destroy restaurant", @restaurant, method: :delete%>
