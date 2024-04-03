@@ -1,23 +1,26 @@
-<div>
-<p style="color: green"><%= notice %></p>
+<div class="show-container">
+  <% if notice %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
 
-<h1><%= @restaurants.name %></h1>
-<p><%= @restaurants.address %></p>
-<p><%= @restaurants.phone_number %></p>
-<p><%= @restaurants.category %></p>
+  <h1><%= @restaurant.name %></h1>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.phone_number %></p>
+  <p><%= @restaurant.category %></p>
 
-</div>
-
-<h2>Reviews</h2>
-<ul>
-<% @restaurants.reviews.each do |review| %>
-  <li><%= review.rating %>
-    <%= review.content %>
-    <%= button_to "Delete review", review, method: :delete%>
-  </li>
+  <h2>Reviews</h2>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+      <li>
+        <span class="rating"><%= review.rating %></span>
+        <%= review.content %>
+        <%= button_to "Delete review", review, method: :delete, class: "btn btn-danger" %>
+      </li>
     <% end %>
-</ul>
-  <p><%= link_to "Add a review", new_restaurant_review_path(@restaurants) %></p>
-  <p><%= link_to "Edit restaurant", edit_restaurant_path %></p>
-<%= link_to "Back to restaurants", restaurants_path %>
-<%= button_to "Destroy restaurant", @restaurant, method: :delete%>
+  </ul>
+
+  <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+  <%= link_to "Edit restaurant", edit_restaurant_path(@restaurant), class: "btn btn-primary" %>
+  <%= link_to "Back to restaurants", restaurants_path, class: "btn btn-primary" %>
+  <%= button_to "Destroy restaurant", @restaurant, method: :delete, class: "btn btn-danger" %>
+</div>
